@@ -4,7 +4,7 @@ class Solution(object):
         :type x: int
         :rtype: bool
         """
-        x_str=str(x)
+        x_str=str(x) 
     
 
         for i in range(len(x_str)):
