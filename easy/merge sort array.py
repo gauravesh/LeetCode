@@ -7,17 +7,10 @@ class Solution(object):
         :type n: int
         :rtype: None Do not return anything, modify nums1 in-place instead.
         """
-        x=[]
-        for i in range(m):
-            x.append(nums1[i])
-        #print(x)
-        y=[]
-        for j in range(n):
-            y.append(nums2[j])
-        #print(y)
-        list3=x+y
-        list3.sort()
-        print(list3)
-
-
-
+        nums1[:m] = nums1[:m]
+        
+       
+        nums1[m:] = nums2
+        
+     
+        nums1.sort()
