@@ -1,4 +1,4 @@
-import itertools
+=import itertools
 
 class Solution(object):
     def threeSum(self, nums):
@@ -6,14 +6,30 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-        nums.sort()  # Sort the input list
-        
-        all_list = list(itertools.combinations(nums, 3))
-        final_list = []
-        
-        for combo in all_list:
-            if sum(combo) == 0 and list(combo) not in final_list:
-                final_list.append(list(combo))
-        
-        return final_list
 
+        nums.sort()
+        
+        all_list = []
+        for i in range(len(nums)):
+            j=i+1
+            k=len(nums)-1
+            while j < k:
+                if nums[i]+nums[j]+nums[k] == 0:
+                    a=[nums[i],nums[j],nums[k]]
+                    all_list.append(a)
+                    j +=1
+                    k -=1
+                elif  (nums[i]+nums[j]+nums[k]) < 0:
+                    j +=1
+                else :
+                    k-=1
+
+
+
+        # Remove duplicates
+        
+        final_list = []
+        for i in all_list:
+            if sum(i) == 0 and list(i) not in final_list:
+                final_list.append(list(i))
+        return final_list
