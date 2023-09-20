@@ -5,28 +5,37 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
-        prod=1
-        zero=0
+        prefix=[]
+        mult=1
         for i in nums:
-            if i == 0:
-                zero += 1
-                continue
-            prod *= i 
-        
-        
-        final_array=[]
+            mult=mult*i
+            prefix.append(mult)
 
-        if zero >= 2:
-            for i in nums:
-                final_array.append(0)
-        if zero  == 1:
-            for i in nums:
-                if i == 0:
-                    final_array.append(prod)
-                else:
-                    final_array.append(0)
-        if zero == 0:
-            for i in nums:
-                final_array.append(prod/i)
+        
+        del prefix[len(prefix)-1]
+        prefix = [1]+prefix
+        
+        
+        postfix=[]
+        r_nums=nums
+        r_nums.reverse()
+        mult=1
+        
+        for i in r_nums:
+            mult*=i
+            postfix.append(mult)
+       
+        postfix.reverse()
+        del postfix[0]
+        postfix.append(1)
+        
+
+
+
+        final = []
+        for i in range(len(postfix)):
+            final.append(postfix[i]*prefix[i])
+        return (final)
+
             
-        return (final_array)
+        
