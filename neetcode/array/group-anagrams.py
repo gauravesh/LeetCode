@@ -4,21 +4,12 @@ class Solution(object):
         :type strs: List[str]
         :rtype: List[List[str]]
         """
-        #we can find anagram 1 by 1
-        check_set = set()
+        anagram_dic=dict()
         for i in strs:
-            sorted_str = ''.join(sorted(i))
-            check_set.add(sorted_str)
-         
-        final_arr=[]
-        for i in check_set:
-            i_list=[]
-            for j in strs:
-
-                copy_j=''.join(sorted(j))
-
-               # print("real::",j,"copy::",copy_j,"i::",i)
-                if copy_j == i:
-                    i_list.append(str(j))
-            final_arr.append(i_list)
-        return (final_arr)
+            sorted_word=''.join(sorted(i))
+            if sorted_word not in anagram_dic:
+                anagram_dic[sorted_word]=[i]
+            else:
+                anagram_dic[sorted_word].append(i)
+        return list(anagram_dic.values())
+        
