@@ -13,19 +13,21 @@ class Solution(object):
         :type head: Node
         :rtype: Node
         """
-        #first lets copy the linked list
-        new_List=ListNode()
-        ur=new_List
+        oldtocopy={None:None}
         cur=head
-        while cur.next is not None:
-            temp_val=cur.val
-            ur.next=ListNode(temp_val)
-            ur=ur.next
+        while cur:
+            copy=Node(cur.val)
+            oldtocopy[cur]=copy
             cur=cur.next
-        new_List=new_List.next
 
-
+        cur=head
+        while cur:
+            copy = oldtocopy[cur]
+            copy.next=oldtocopy[cur.next]
+            copy.random=oldtocopy[cur.random]
+            cur=cur.next
         
+        return oldtocopy[head]
 
 
 
