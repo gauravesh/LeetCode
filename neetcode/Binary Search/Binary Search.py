@@ -1,30 +1,40 @@
 class Solution(object):
-    def search(self, nums, target):
+    def searchMatrix(self, matrix, target):
         """
-        :type nums: List[int]
+        :type matrix: List[List[int]]
         :type target: int
-        :rtype: int
+        :rtype: bool
         """
-        if not nums:
-            return -1
-        if len(nums) ==1:
-            if nums[0]==target:
-                return 0
-            return -1
+        l=0
+        r=len(matrix)-1
+        mid=l+r//2
+    
+        if target<matrix[0][0] or target > matrix[-1][0]:
+            return False
+        while r-l != 0:
+            if target == matrix[mid][0]:
+                return True
+            if target <matrix[mid][0]:
+                r=mid-1
+            if target > matrix[mid][0]:
+                l=mid+1
+            mid=r+l//2
+        new=matrix[r]
 
-        left=0
-        right=len(nums)-1
-        mid=(left+right)//2
+        l=0
+        r=len(new)-1
+        mid=(l+r)//2
+        while l<=r:
+            if target==new[mid]:
+                return True
+            if target < new[mid]:
+                r=mid-1
+            if target > new[mid]:
+                l= mid+1
+            target=(l+r)//2
+        return False
         
-        while left <= right:
-            if nums[mid] == target:
-                return mid
-            if nums[mid]<target:
-                left= mid+1
-            if nums[mid] > target:
-                right=mid-1
-            mid=(left+right)//2
-        return -1
-
 
         
+
+            
