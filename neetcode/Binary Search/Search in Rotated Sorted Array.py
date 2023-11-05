@@ -5,29 +5,20 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        l,r=0,len(nums)-1
-        m=(l+r)//2
-        while l<r:
-            if nums[l] < nums[r]:
-                return self.binsearch(nums,target)
-            else:
-                if nums[mid] < target
+        l, r = 0, len(nums) - 1
 
-    def binsearch(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: int
-        """
-        l,r=0,len(nums)-1
-        while l<=r:
-            mid=(l+r)//2
-            if nums[mid] < target:
-                l = mid + 1
-            elif nums[mid] > target:
-                r = mid - 1     
+        while l <= r:
+            m = (l + r) // 2
+            if nums[m] == target:
+                return m
+            elif nums[l] <= nums[m]:
+                if nums[l]<= target and nums[m]> target:
+                    r=m-1
+                else:
+                    l=m+1
             else:
-                return mid
-        return -1    
-
-        
+                if nums[m] <target and target >= nums[r]:
+                    l=m+1
+                else:
+                    r=m-1
+        return -1
