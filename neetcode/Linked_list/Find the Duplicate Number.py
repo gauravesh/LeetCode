@@ -4,16 +4,15 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        has=set()
-        for i in nums:
-            if i in has:
-                return i 
-            has.add(i)
-
-        
-        
-            
-
-
-        
-        
+        s,f=0,0
+        while True:
+            s=nums[s]
+            f=nums[nums[f]]
+            if s==f:
+                break
+        se=0
+        while True:
+            s=nums[s]
+            se=nums[se]
+            if s==se:
+                return s
