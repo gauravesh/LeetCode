@@ -1,34 +1,24 @@
-from collections import deque
-
 # Definition for a binary tree node.
-# class TreeNode(object):
+# class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
-    def diameterOfBinaryTree(self, root):
-        """
-        :type root: TreeNode
-        :rtype: int
-        """
-        self_worth=0
-        q=deque([(root,self_worth)])
+class Solution:
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        res=0
+        def dfs(root):
+            nonlocal res
+            if not root:
+                return 0
 
-        left=0
-        right=0
+            left=dfs(root.left)
+            right=dfs(root.right)
+            res=max(res,left+right)
+
+            return 1+max(left,right)
+        dfs(root)
+        return res
 
         
-        while q:
-            for i in range(len(q)):
-                node,value=q.popleft()
-
-                if node.left:
-                    left=min(left,value-1)
-                    q.append((node.left,value-1))
-                if node.right:
-                    right=max(right,value+1)
-                    q.append((node.right,value+1))
-        return abs(right-left)
-
         
