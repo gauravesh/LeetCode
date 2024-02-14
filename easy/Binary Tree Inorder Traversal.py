@@ -17,3 +17,4 @@ class Solution:
         if root.right:
             li+= self.inorderTraversal(root.right)
         return li
+  
