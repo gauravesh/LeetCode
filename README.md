@@ -1,2 +1,2 @@
-# hackerrank
-Repository for hacerrank problems
+# Leetcode
+Repository for Leetcode problems
