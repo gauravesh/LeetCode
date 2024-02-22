@@ -4,24 +4,20 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+from collections import deque
+
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
-        def find_left_nodes(r):
-            li=list()
-
-            if not r:
-                return []
-            
-
-            if root.left:
-                li += find_left_nodes(r.left)
-            li.append(r.val)
-
-
-            
-            return li
-        d=find_left_nodes(root)
-        print(d)
-        return d[k-1]
-            
-            
+        stack=[root]
+        li=list()
+        while stack:
+            node=stack.pop()
+            if node:
+                li.append(node.val)
+                
+                stack.append(node.right)
+                stack.append(node.left)
+        li.sort()
+        return li[k-1]
+        
+                
