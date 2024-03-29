@@ -54,15 +54,40 @@ class Solution(object):
 
         #variable to store the space 
         saver=list()
+        saver_2=list()
 
         #checking for the index that matches with nums
-        for permutation in save_permutations:
-            if originaL_nums[permutation[0]] == original_nums[0]:
+        for index_p,permutation in enumerate(save_permutations):
+            check=0
+            if sorted_nums[permutation[check]] == original_nums[check]:
+                while sorted_nums[permutation[check]] == original_nums[check]:
+                    if check==len(nums)-1:
+                        saver=permutation
+                        #print(index_p)
+                        if index_p == len(save_permutations)-1:
+                            saver_2=save_permutations[0]
+                        else:
+                            saver_2=save_permutations[index_p+1]
+
+                        print(saver_2)
+                        break
+                    check+=1
+                '''
                 for check in range(len(nums)+1):
                     if i == len(nums):
                         saver=permutation
                         break
-                    elif originaL_nums[permutation[check]] == original_nums[check]:
+                    elif sorted_nums[permutation[check]] == original_nums[check]:
+                        check+=1
+                '''
+        length_of_nums=len(nums)
+
+        
+        for index,j in enumerate(saver_2):
+            nums[index]=sorted_nums[j]
+
+            
+
 
                         
                     
